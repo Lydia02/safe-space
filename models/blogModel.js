@@ -14,7 +14,8 @@ description: {
     type: String,
 },
 author: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
     required: true
 },
 state: {

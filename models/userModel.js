@@ -21,7 +21,13 @@ const UserSchema = new Schema({
         type: String,
         required:true,
         unique: true
-    }
+    },
+    article: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Blog'
+        }
+    ]
 });
 
 UserSchema.pre(

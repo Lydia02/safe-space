@@ -5,7 +5,7 @@ const { readingTime } = require('../utils/utils')
 const createBlog = async (req, res, next) => {
   try {
     // grab details from the request
-    const { title, description, tags, body } = req.body
+    const { title, description, author, tags, body, state } = req.body
     // create blog object
     const newBlog = new Blog({
       title,
@@ -13,6 +13,9 @@ const createBlog = async (req, res, next) => {
       tags,
       author: req.user._id,
       body,
+      state,
+      read_count,
+      timestamp:Date.now(),
       reading_time: readingTime(body)
     })
     // save to database
