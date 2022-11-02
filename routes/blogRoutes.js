@@ -1,14 +1,13 @@
 const passport  = require('passport')
 const router = require('express').Router()
-const { createBlog, getListOfPublishedBlogs, getPublishedBlog } = require('../controller/articleController')
+const { createArticle, AllPublishedArticles, PublishedArticle} = require('../controller/articleController')
 const auth = require('../middleware/auth')
-router.route('/').get(getListOfPublishedBlogs)
-router.route('/:id').get(getPublishedBlog)
+router.route('/').get(AllPublishedArticles)
+router.route('/:id').get(PublishedArticle)
+// router.use(auth)
+ router.post('/', passport.authenticate('article', {session:false}), createArticle)
 
-// allow only requests with valid tokens
-router.use(auth)
-//router.post('/blog', passport.authenticate('jwt', { session:false }), createBlog)
-//router.post('/', passport.authenticate('jwt', {session:false}), createBlog)
-router.route('/blog').post(createBlog)
+
+ router.route('/').post(createArticle)
 
 module.exports = router

@@ -5,7 +5,7 @@ const localStrategy = require("passport-local").Strategy;
 require("dotenv").config();
 const userModel = require("../models/userModel");
 
-module.exports = function (passport) {
+//module.exports = function (passport) {
   passport.use(
   new JWTStrategy(
       {
@@ -84,4 +84,4 @@ passport.use(
       }
   )
 );
-}
+//}

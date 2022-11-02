@@ -1,7 +1,7 @@
 const readingTime = (article) => {
     const noOfWords = article.split(' ').length
 
-    const wordPerMinute = noOfWords / 200
+    const wordPerMinute = noOfWords / 400
 
     return Math.round(wordPerMinute) === 0 ? 1 : Math.round(wordPerMinute)
 }
