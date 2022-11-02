@@ -7,7 +7,7 @@ const createBlog = async (req, res, next) => {
     // grab details from the request
     const { title, description, author, tags, body, state } = req.body
     // create blog object
-    const newBlog = new Blog({
+    const newBlog = await new Blog({
       title,
       description,
       tags,
@@ -18,6 +18,7 @@ const createBlog = async (req, res, next) => {
       timestamp:Date.now(),
       reading_time: readingTime(body)
     })
+    console.log(newBlog)
     // save to database
     const createdBlog = await newBlog.save()
     // return response
