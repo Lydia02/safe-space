@@ -5,7 +5,7 @@ const auth = require('../middleware/auth')
 router.route('/').get(AllPublishedArticles)
 router.route('/:id').get(PublishedArticle)
 // router.use(auth)
- router.post('/', passport.authenticate('article', {session:false}), createArticle)
+ //router.post('/', passport.authenticate('blog', {session:false}))
 
 
  router.route('/').post(createArticle)

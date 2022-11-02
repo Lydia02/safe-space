@@ -18,8 +18,8 @@ const createUser = async (req, res, next) => {
       status: true,
       data: createdUser,
     })
-  } catch (e) {
-    next(e)
+  } catch (error) {
+    next(error)
   }
 }
 
