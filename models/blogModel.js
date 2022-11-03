@@ -13,6 +13,12 @@ const BlogSchema = new Schema({
 description: {
     type: String,
 },
+tags: {
+    type: String,
+},
+body: {
+    type: String
+},
 author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',

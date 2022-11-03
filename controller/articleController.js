@@ -6,32 +6,35 @@ const { readingTime } = require('../utils/utils')
 const createArticle = async (req, res, next) => {
   try {
     // grab details from the request
-    console.log(req.user)
-    console.log(req.User)
-    res.end()
-    // const { title, description, author, read_count,tags, body, state } = req.body
-    // // create blog object
-    // const newArticle =  new Article({
-    //   title,
-    //   description,
-    //   tags,
-    //   author: req.user._id,
-    //   body,
-    //   state,
-    //   read_count,
-    //   timestamp:Date.now(),
-    //   reading_time: readingTime(body)
-    // })
-    // console.log(newArticle)
-    // // save to database
-    // const createdArticle = await newArticle.save()
-    // // return response
-    // return res.status(201).json({
-    //   status: true,
-    //   data: createdArticle,
-    // })
+    // console.log(req.user)
+    // console.log(req.User)
+    // res.end()
+    const { title, description ,tags, body } = req.body
+    // create blog object
+    const newArticle =  new Article({
+      title,
+      description,
+      tags,
+      body,
+      author: req.user._id,
+
+      // state,
+      // read_count,
+      timestamp:Date.now()
+      // reading_time: readingTime(body)
+    })
+    console.log(newArticle)
+    // save to database
+    const createdArticle = await newArticle.save()
+    //return response
+    return res.status(201).json({
+      status: true,
+      data: createdArticle,
+    })
+
+    // return res.status(201).json(createArticle)
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     next(error)
   }
 }

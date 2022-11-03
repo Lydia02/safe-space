@@ -1,4 +1,4 @@
-const passport = require("passport");
+// const passport = require("passport");
 const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 const localStrategy = require("passport-local").Strategy;
@@ -10,8 +10,8 @@ module.exports = function (passport) {
   new JWTStrategy(
       {
           secretOrKey: process.env.JWT_SECRET,
-          jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
-          // jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken() // Use this if you are using Bearer token
+          // jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token')
+          jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken() // Use this if you are using Bearer token
       },
       async (token, done) => {
           try {
