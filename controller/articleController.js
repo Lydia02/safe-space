@@ -17,13 +17,12 @@ const createArticle = async (req, res, next) => {
       tags,
       body,
       author: req.user._id,
-
-      // state,
+     state: 'published',
       // read_count,
-      timestamp:Date.now()
-      // reading_time: readingTime(body)
+      timestamp:Date.now(),
+      reading_time: readingTime(body)
     })
-    console.log(newArticle)
+    //console.log(newArticle)
     // save to database
     const createdArticle = await newArticle.save()
     //return response
