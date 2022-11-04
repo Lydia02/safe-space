@@ -1,4 +1,3 @@
-
 const express = require('express')
 const Article = require('../models/blogModel')
 const { readingTime } = require('../utils/utils')
@@ -9,7 +8,7 @@ const createArticle = async (req, res, next) => {
     // console.log(req.user)
     // console.log(req.User)
     // res.end()
-    const { title, description ,tags, body } = req.body
+    const { title, description, read_count ,tags, body } = req.body
     // create blog object
     const newArticle =  new Article({
       title,
@@ -17,8 +16,8 @@ const createArticle = async (req, res, next) => {
       tags,
       body,
       author: req.user._id,
-     //state: '',
-      // read_count,
+      //state: 'published',
+      read_count,
       timestamp:Date.now(),
       reading_time: readingTime(body)
     })
@@ -39,12 +38,52 @@ const createArticle = async (req, res, next) => {
 }
 
 const AllPublishedArticles = async (req, res, next) => {
+  const {page, posts, author,title,tags, order_by, order} = req.query;
   try {
+    const searchQuery = {
+      state: "published"
+    },
+    sortQuery = {};
+    let searchtags = {};
+
+    //Pagination
+
+    const startpage = (!page ? 0: page);
+    const postsPerPage = (!posts?20:posts);
+    const sortOrder = (!order ? "asc": order);
+    const orderParams = (!order_by ? "timestamp": order_by);
+    //Searching
+    searchtags = (!tags ? ["post"]: getTags(tags));
+    if(author) {
+      searchQuery.author = author
+
+    }
+    if(title) {
+      searchQuery.title = title.toLowerCase()
+    }
+
+    //Sorting
+
+    sortParams = orderParams.split(",");
+    for (const param of sortParams) {
+
+      if(sortOrder == "asc" && order_by) {
+        sortQuery[param] =1;
+      }
+      if(sortOrder == "desc" && order_by) {
+        sortQuery[param] = -1
+      }
+      if(sortOrder == "desc" && order_by) {
+        sortQuery[param] = -1
+      }
+      if(sortOrder == "asc" && !order_by) {
+        sortQuery[param] = 1
+      }
+    }
+    
     const articles = await Article
-      .find({ state: 'published' })
-      .select({ title: 1 })
-      .populate('author', { firstname:1 })
-    return res.json({
+    .find({tags:{$in:searchtags },...searchQuery})
+  return res.json({
       status: true,
       data: articles
     })
@@ -60,7 +99,7 @@ const PublishedArticle = async (req, res, next) => {
     const article = await Article.findById(id)
       .populate('author', { firstname: 1 })
 
-    if (article.state == null) {
+    if (article.state !== 'published') {
       return res.status(403).json({
         status: true,
         error: 'Requested article is not published'
@@ -87,16 +126,19 @@ const PublishedArticle = async (req, res, next) => {
   }
 }
 
-const updatePubishedArticle = async (req, res) => {
+const updatePubishedArticleState = async (req, res) => {
   try{
   const { id } = req.params;
+  console.log(id)
+  
+
  // const { title, description, state,tags, body } = updates
 
 
   
-  const updates = await req.body;
+  //const {updates} = await req.body;
 
-  const article = await Article.findOneAndUpdate(id, updates, {new:true} )
+  const article = await Article.findById(id)
 
   if(!article) {
     return res.status(404).json({
@@ -104,15 +146,13 @@ const updatePubishedArticle = async (req, res) => {
       article: null
     })
   }
- article.updates = req.body;
+ article.state = 'published';
 
   await article.save();
-
-  
     return res.status(200).json({
       status: true,
      message: 'Article updated successfully',
-     article: updates
+     article: article
     })
   } catch (error) {
     res.status(500).json({
@@ -122,6 +162,42 @@ const updatePubishedArticle = async (req, res) => {
     })
   }
 }
+
+const updatePubishedArticle = async (req, res) => {
+  try{
+  const { id } = req.params;
+   
+ const { title, description,tags, body } = req.body
+
+
+  const article = await Article.findById(id)
+
+  if(!article) {
+    return res.status(404).json({
+      status: false,
+      article: null
+    })
+  }
+ article.title = title;
+ article.tags = tags;
+ article.description = description;
+ article.body = body;
+
+  await article.save();
+    return res.status(200).json({
+      status: true,
+     message: 'Article updated successfully',
+     article: article
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+      error: error.message
+    })
+  }
+}
+
 
 const deletePublishedArticles = async(req, res) => {
   const { id } = req.params;
@@ -134,6 +210,7 @@ module.exports = {
   createArticle,
   AllPublishedArticles,
   PublishedArticle,
+  updatePubishedArticleState,
   updatePubishedArticle,
   deletePublishedArticles
 }

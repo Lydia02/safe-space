@@ -5,9 +5,16 @@ const Article = require('../models/blogModel')
 //const { readingTime } = require('../utils/utils')
 
 exports.getAllPublishedBlogs = async (req, res) => {
+    let {page, postsPerPage } = req.param
+    
     try {
-        let article = await Article.find()
-        if(article === "published")
+        page = !page? 0: page
+        postsPerPage = !postsPerPage? 20: postsPerPage
+        let article = await Article
+        .find({state:'published'})
+        .skip(page)
+        .limit(postsPerPage);
+        if(article)
         return res.status(200).json({
             success:true,
             message: 'Published Articles found!',
