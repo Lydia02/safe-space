@@ -1,9 +1,11 @@
 const passport  = require('passport')
 const router = require('express').Router()
-const { createArticle, AllPublishedArticles, PublishedArticle} = require('../controller/articleController')
+const { createArticle, AllPublishedArticles, PublishedArticle, updatePubishedArticle, deletePublishedArticles} = require('../controller/articleController')
 const auth = require('../middleware/auth')
 router.route('/blog').get(AllPublishedArticles)
 router.route('/:id').get(PublishedArticle)
+router.route('/:id').patch(updatePubishedArticle)
+router.route('/:id').delete(deletePublishedArticles)
 // router.use(auth)
  //router.post('/', passport.authenticate('blog', {session:false}))
 

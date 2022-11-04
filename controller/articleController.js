@@ -17,7 +17,7 @@ const createArticle = async (req, res, next) => {
       tags,
       body,
       author: req.user._id,
-     state: 'published',
+     //state: '',
       // read_count,
       timestamp:Date.now(),
       reading_time: readingTime(body)
@@ -28,7 +28,7 @@ const createArticle = async (req, res, next) => {
     //return response
     return res.status(201).json({
       status: true,
-      data: createdArticle,
+      data: createdArticle 
     })
 
     // return res.status(201).json(createArticle)
@@ -44,10 +44,9 @@ const AllPublishedArticles = async (req, res, next) => {
       .find({ state: 'published' })
       .select({ title: 1 })
       .populate('author', { firstname:1 })
-
     return res.json({
       status: true,
-      data: blogs
+      data: articles
     })
   } catch (err) {
     err.source = 'get published blogs controller'
@@ -61,12 +60,18 @@ const PublishedArticle = async (req, res, next) => {
     const article = await Article.findById(id)
       .populate('author', { firstname: 1 })
 
-    if (article.state !== 'published') {
+    if (article.state == null) {
       return res.status(403).json({
-        status: false,
+        status: true,
         error: 'Requested article is not published'
       })
     }
+    // } else {
+    //   return res.status(403).json({
+    //     status: false,
+    //     error: 'Requested article is not published'
+    //   })
+    // }
 
     // update blog read count
     article.read_count += 1
@@ -82,8 +87,53 @@ const PublishedArticle = async (req, res, next) => {
   }
 }
 
+const updatePubishedArticle = async (req, res) => {
+  try{
+  const { id } = req.params;
+ // const { title, description, state,tags, body } = updates
+
+
+  
+  const updates = await req.body;
+
+  const article = await Article.findOneAndUpdate(id, updates, {new:true} )
+
+  if(!article) {
+    return res.status(404).json({
+      status: false,
+      article: null
+    })
+  }
+ article.updates = req.body;
+
+  await article.save();
+
+  
+    return res.status(200).json({
+      status: true,
+     message: 'Article updated successfully',
+     article: updates
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+      error: error.message
+    })
+  }
+}
+
+const deletePublishedArticles = async(req, res) => {
+  const { id } = req.params;
+
+  const article = await Article.deleteOne({_id:id})
+
+  return res.json({ status: true, article})
+}
 module.exports = {
   createArticle,
   AllPublishedArticles,
   PublishedArticle,
+  updatePubishedArticle,
+  deletePublishedArticles
 }

@@ -3,7 +3,7 @@ const express = require('express');
 const connectToDB = require('./db')
 const passport = require('passport')
 const bodyParser = require('body-parser');
-
+const publicRoute = require('./routes/publicRoutes')
 const userRoute = require('./routes/authRoutes')
 const blogRoute = require('./routes/blogRoutes')
 //const authController= require('./controller/authController')
@@ -13,7 +13,7 @@ require("./middleware/auth")(passport)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', userRoute);
-//app.use('/', blogRoute)
+app.use('/', publicRoute)
 
 app.use('/blog', passport.authenticate('jwt', { session:false }), blogRoute)
 
