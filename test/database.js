@@ -11,7 +11,7 @@ class Connection {
 
   async connect() {
     this.mongoServer = await MongoMemoryServer.create();
-    const mongoUri = this.mongoServer.getUri();
+    const mongoUri = await this.mongoServer.getUri();
 
     this.connection = await mongoose.connect(mongoUri, {
       useNewUrlParser: true,

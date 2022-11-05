@@ -3,7 +3,7 @@ const passport = require('passport')
 const express = require('express')
 const publicRouter = express.Router()
 
-const public = require('../controller/publicArticleController')
-publicRouter.get('/blogs', public.getAllPublishedBlogs)
+const publicController = require('../controller/publicArticleController')
+publicRouter.get('/blogs', publicController.getAllPublishedBlogs)
 
 module.exports = publicRouter
