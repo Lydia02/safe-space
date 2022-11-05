@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const publicRoute = require('./routes/publicRoutes')
 const userRoute = require('./routes/authRoutes')
 const blogRoute = require('./routes/blogRoutes')
+
 //const authController= require('./controller/authController')
 const app = express();
 app.use(passport.initialize())
