@@ -1,9 +1,9 @@
 const request = require('supertest')
 const { connect } = require('./database')
-const app = require('../index');
-const BlogModel = require('../models/blogModel');
-const UserModel = require('../models/userModel');
-const { getIdFromToken } = require('../utils/utils')
+const app = require('../../index');
+const BlogModel = require('../../models/blogModel');
+const UserModel = require('../../models/userModel');
+const { getIdFromToken } = require('../../utils/utils')
 
 
 
