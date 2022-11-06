@@ -75,6 +75,6 @@ describe('Blog Route', () => {
 
         expect(response.status).toBe(200)
         expect(response.body).toHaveProperty('blog')
-        expect(response.body).toHaveProperty('user.id')
+        expect(response.body).toHaveProperty('status')
     })
 })
