@@ -1,4 +1,4 @@
-const connectToDB = require('./db')
+const connectToDB = require('./src/db')
 require('dotenv').config()
 const app = require('./index')
 const PORT = process.env.PORT || 4977
