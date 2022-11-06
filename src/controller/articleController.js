@@ -1,6 +1,6 @@
 const express = require('express')
 const Article = require('../models/blogModel')
-const { readingTime } = require('../utils/utils')
+const { readingTime } = require('../../utils/utils')
 
 const createArticle = async (req, res, next) => {
   try {

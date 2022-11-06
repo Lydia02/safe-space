@@ -5,8 +5,7 @@
   "main": "db.js",
   "scripts": {
     "test": "jest --testTimeout=2000000",
-    "dev": "nodemon app.js",
-    "start": "node app.js"
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
