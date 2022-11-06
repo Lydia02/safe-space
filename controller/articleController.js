@@ -4,10 +4,7 @@ const { readingTime } = require('../../utils/utils')
 
 const createArticle = async (req, res, next) => {
   try {
-    // grab details from the request
-    // console.log(req.user)
-    // console.log(req.User)
-    // res.end()
+  
     const { title, description, read_count ,tags, body } = req.body
     // create blog object
     const newArticle =  new Article({
@@ -16,7 +13,6 @@ const createArticle = async (req, res, next) => {
       tags,
       body,
       author: req.user._id,
-      //state: 'published',
       read_count,
       timestamp:Date.now(),
       reading_time: readingTime(body)

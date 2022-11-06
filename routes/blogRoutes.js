@@ -1,6 +1,6 @@
 const passport  = require('passport')
 const router = require('express').Router()
-const { createArticle, AllPublishedArticles, PublishedArticle, updatePubishedArticle, updatePubishedArticleState, deletePublishedArticles} = require('../src/controller/articleController')
+const { createArticle, AllPublishedArticles, PublishedArticle, updatePubishedArticle, updatePubishedArticleState, deletePublishedArticles} = require('../controller/articleController')
 const auth = require('../middleware/auth')
 router.route('/blog').get(AllPublishedArticles)
 router.route('/:id').get(PublishedArticle)

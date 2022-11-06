@@ -3,7 +3,7 @@ const JWTStrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 const localStrategy = require("passport-local").Strategy;
 require("dotenv").config();
-const userModel = require("../src/models/userModel");
+const userModel = require("../models/userModel");
 
 module.exports = function (passport) {
   passport.use(

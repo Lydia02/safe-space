@@ -13,7 +13,7 @@ require("./middleware/auth")(passport)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', userRoute);
-app.use('/', publicRoute)
+app.use('/blogs', publicRoute)
 
 app.use('/blog', passport.authenticate('jwt', { session:false }), blogRoute)
 

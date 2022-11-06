@@ -3,7 +3,7 @@ const passport = require('passport')
 const express = require('express')
 const userRouter = express.Router()
 
-const authController = require('../src/controller/authController')
+const authController = require('../controller/authController')
 
 userRouter.post(
     '/signup',
