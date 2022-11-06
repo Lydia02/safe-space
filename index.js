@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const connectToDB = require('./db')
 const passport = require('passport')
 const bodyParser = require('body-parser');
 const publicRoute = require('./routes/publicRoutes')
@@ -19,14 +18,4 @@ app.use('/', publicRoute)
 app.use('/blog', passport.authenticate('jwt', { session:false }), blogRoute)
 
 //
-const PORT = process.env.PORT || 4977
-
-const MONGO_URI = process.env.MONGO_URI
-
-
-//connectToDB
-connectToDB(MONGO_URI)
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
+module.exports = app
