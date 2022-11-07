@@ -17,7 +17,7 @@ const createArticle = async (req, res, next) => {
       timestamp:Date.now(),
       reading_time: readingTime(body)
     })
-    //console.log(newArticle)
+    
     // save to database
     const createdArticle = await newArticle.save()
     //return response
