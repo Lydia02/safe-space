@@ -2,7 +2,7 @@
   "name": "blogapp",
   "version": "1.0.0",
   "description": "",
-  "main": "db.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest --testTimeout=2000000",
     "dev": "nodemon app.js"
