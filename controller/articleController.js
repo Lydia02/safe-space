@@ -14,6 +14,7 @@ const createArticle = async (req, res, next) => {
       body,
       author: req.user._id,
       read_count,
+      state: 'published',
       timestamp:Date.now(),
       reading_time: readingTime(body)
     })
