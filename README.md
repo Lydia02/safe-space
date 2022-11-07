@@ -1,8 +1,27 @@
-# blog Api
-An API that shows the list of articles created by different authenticated users.
+# Blog Api
+An API that shows the list of articles created by different authenticated users. 
+
+## Built with
+- Javascript
+- Node.Js
+- MONGODB
+- Express.Js
+
 
 ## Table of Contents
-- 
+- Prerequisites
+- Requirements
+- Setup
+- Base URL
+- Models
+- Endpoints
+- Tests on all endpoints
+- License
+- Author
+
+## Prerequisite
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
 
 ## Requirements
 - User should be able to resgister, login.
@@ -21,12 +40,12 @@ An API that shows the list of articles created by different authenticated users.
 - run `npm dev`
 
 ## Base URL
-[cyclic.sh](https://app.cyclic.sh/#/)
+localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-erin-lizard-veil.cyclic.app/blogs)/)
 
 ## Models
-# Users
+## Users
 
-## User signup details
+### User signup details
 
 | field | data_type| constraints  |
 | :---:   | :---: | :---: |
@@ -35,13 +54,13 @@ An API that shows the list of articles created by different authenticated users.
 | firstname | String | required |
 | lastname | String |required |
 
-## User login details
+### User login details
 | field | data_type |
 | :---:   | :---: | 
 | email | String  |
 | password | String |
 
-# Article model
+## Article model
 
 | field | data_type| constraints  |
 | :---:   | :---: | :---: |
@@ -60,16 +79,20 @@ An API that shows the list of articles created by different authenticated users.
 - ** Route **: /signup
 - ** Method **: POST
 - Body: 
-`
+
+```
 {
   "email": "Lydia@gmail.com",
   "password": "lydia",
   "firstname": "lydia1",
   "lastname": "dev"
 }
-`
-- Response
-`
+
+```
+
+- **Response**
+
+```
 {
   "message": "Signup successful",
   "user": {
@@ -82,42 +105,43 @@ An API that shows the list of articles created by different authenticated users.
     "__v": 0
   }
 }
-`
+```
 ### Login
-- ** Route **: /login
-- ** Method **: POST
-- Body: 
-`
+- **Route**: /login
+- **Method**: POST
+- **Body**: 
+```
 {
   "email": "Lydia@gmail.com",
   "password": "lydia"
  }
- `
- - Response
- `
+ ```
+ - **Response**
+ ```
  {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzNjkwMTUwYjNiZWRjN2ExZWU0ZDQzMCIsImVtYWlsIjoiTHlkaWFAZ21haWwuY29tIn0sImlhdCI6MTY2NzgyNzA0MywiZXhwIjoxNjY3ODMwNjQzfQ.yue2VqdFuu1bfKs9Yi2vYkDHjpb2VIBNPl8lNShxSQI"
 }
-`
+```
+# Test all endpoints
 
-# Create article by auntenticated Users
+### Create article by auntenticated Users
 
-- ** Route **: /blog
-- ** Method **: POST
-- Header
+- **Route**: /blog
+- **Method**: POST
+- **Header**
 -- Authorization: Bearer {token}
-- Body:
+- **Body**:
 
-`
+```
 {
     "title": "Enter your blog title",
     "description": "Blog description",
     "tag" "#blog_tag",
     "body": "blog content"
 }
-`
-- Response
-`
+```
+- **Response**
+```
 {
   "status": true,
   "data": {
@@ -134,23 +158,24 @@ An API that shows the list of articles created by different authenticated users.
     "__v": 0
   }
 }
-`
+```
 
-## Update the state from ** draft ** to ** Published **
+### Update the state from ** draft ** to ** Published **
 
-- ** Route **: /blog/:id
-- ** Method **: PATCH
-- Header
+- **Route**: /blog/:id
+- **Method**: PATCH
+- **Header**
+
 -- Authorization: Bearer {token}
-- Body:
+- **Body**:
 
-`
+```
 {
        "state": "published"
 }
-`
-- Responses
-`
+```
+- **Responses**
+```
 {
   "status": true,
   "message": "Article updated successfully",
@@ -168,16 +193,16 @@ An API that shows the list of articles created by different authenticated users.
     "__v": 0
   }
 }
-`
+```
 
-## Get **published** article by authenticated user*
+### Get **published** article by authenticated user*
 
-- ** Route **: /blog/:id
-- ** Method **: GET
-- Header
+- **Route**: /blog/:id
+- **Method**: GET
+- **Header**
 -- Authorization: Bearer {token}
 - Resposes:
-`
+```
 {
   "status": true,
   "data": {
@@ -197,15 +222,15 @@ An API that shows the list of articles created by different authenticated users.
     "__v": 0
   }
 }
-`
-## Get **draft** article by authenticated user*
+```
+### Get **draft** article by authenticated user*
 
-- ** Route **: /blog/:id
-- ** Method **: GET
+- **Route**: /blog/:id
+- **Method**: GET
 - Header
 -- Authorization: Bearer {token}
-- Resposes:
-`
+- **Responses**:
+```
 {
   "status": true,
   "data": {
@@ -225,15 +250,15 @@ An API that shows the list of articles created by different authenticated users.
     "__v": 0
   }
 }
-`
-## Delete aticle by owner
+```
+### Delete aticle by owner
 
-- ** Route **: /blog/:id
-- ** Method **: DELETE
+- **Route**: /blog/:id
+- **Method**: DELETE
 - Header
 -- Authorization: Bearer {token}
-- Resposes:
-`
+- **Responses**:
+```
 {
   "status": true,
   "article": {
@@ -241,15 +266,15 @@ An API that shows the list of articles created by different authenticated users.
     "deletedCount": 1
   }
 }
-`
+```
 
-## Get **published** articles by unauthenticated users*
+### Get **published** articles by unauthenticated users*
 
-- ** Route **: /blogs
-- ** Method **: GET
-- Respose
+- **Route**: /blogs
+- **Method**: GET
+- **Response:**
 
-`
+```
 {
   "status": true,
  message": "Published Articles found!",
@@ -265,9 +290,9 @@ An API that shows the list of articles created by different authenticated users.
     "createdAt": "2022-11-07T13:27:46.829Z",
     "updatedAt": "2022-11-07T13:38:43.957Z",
     "__v": 0
-  }  `
+  }  
 }
-`
+```
 
 # LICENSE
 
