@@ -159,7 +159,7 @@ localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app
 }
 ```
 
-### Update the state from **draft** to ** Published **
+### Update the state from **draft** to **Published**
 
 - **Route**: /blog/:id
 - **Method**: PATCH
@@ -192,7 +192,7 @@ localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app
 }
 ```
 
-### Get **published** article by authenticated user*
+### Get **published** article by authenticated user
 
 - **Route**: /blog/:id
 - **Method**: GET
@@ -219,7 +219,7 @@ localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app
   }
 }
 ```
-### Get **draft** article by authenticated user*
+### Get **draft** article by authenticated user
 
 - **Route**: /blog/:id
 - **Method**: GET
