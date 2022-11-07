@@ -19,7 +19,7 @@ An API that shows the list of articles created by different authenticated users.
 - License
 - Author
 
-## Prerequisite
+## Prerequisites
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/)
 
@@ -40,7 +40,7 @@ An API that shows the list of articles created by different authenticated users.
 - run `npm dev`
 
 ## Base URL
-localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-erin-lizard-veil.cyclic.app/blogs)/)
+localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-erin-lizard-veil.cyclic.app/blogs)
 
 ## Models
 ## Users
@@ -160,7 +160,7 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
 }
 ```
 
-### Update the state from ** draft ** to ** Published **
+### Update the state from **draft** to ** Published **
 
 - **Route**: /blog/:id
 - **Method**: PATCH
@@ -251,7 +251,7 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
   }
 }
 ```
-### Delete aticle by owner
+### Delete article by owner
 
 - **Route**: /blog/:id
 - **Method**: DELETE
@@ -268,7 +268,7 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
 }
 ```
 
-### Get **published** articles by unauthenticated users*
+### Get **published** articles by unauthenticated users
 
 - **Route**: /blogs
 - **Method**: GET
