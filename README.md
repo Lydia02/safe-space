@@ -40,7 +40,7 @@ An API that shows the list of articles created by different authenticated users.
 - run `npm dev`
 
 ## Base URL
-localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-erin-lizard-veil.cyclic.app/blogs)
+localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app/blogs)
 
 ## Models
 ## Users
@@ -76,8 +76,8 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
 # Endpoints
 
 ### Signup
-- ** Route **: /signup
-- ** Method **: POST
+- **Route**: /signup
+- **Method**: POST
 - Body: 
 
 ```
@@ -128,8 +128,7 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
 
 - **Route**: /blog
 - **Method**: POST
-- **Header**
--- Authorization: Bearer {token}
+- **Header**: Authorization: Bearer {token}
 - **Body**:
 
 ```
@@ -164,9 +163,7 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
 
 - **Route**: /blog/:id
 - **Method**: PATCH
-- **Header**
-
--- Authorization: Bearer {token}
+- **Header**: Authorization: Bearer {token}
 - **Body**:
 
 ```
@@ -199,8 +196,7 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
 
 - **Route**: /blog/:id
 - **Method**: GET
-- **Header**
--- Authorization: Bearer {token}
+- **Header**: Authorization: Bearer {token}
 - Resposes:
 ```
 {
@@ -227,8 +223,7 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
 
 - **Route**: /blog/:id
 - **Method**: GET
-- Header
--- Authorization: Bearer {token}
+- **Header**: Authorization: Bearer {token}
 - **Responses**:
 ```
 {
@@ -255,8 +250,7 @@ localhost:process.env.PORT || [BlogAPI]([https://app.cyclic.sh/#](https://calm-e
 
 - **Route**: /blog/:id
 - **Method**: DELETE
-- Header
--- Authorization: Bearer {token}
+- **Header**:Authorization: Bearer {token}
 - **Responses**:
 ```
 {
