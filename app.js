@@ -1,8 +1,7 @@
 const connectToDB = require('./db')
 require('dotenv').config()
 const app = require('./index')
-const PORT = process.env.PORT || 4977
-
+const PORT = 3440;
 const MONGO_URI = process.env.MONGO_URI
 
 
