@@ -292,4 +292,4 @@ localhost:process.env.PORT || [BlogAPI](https://calm-erin-lizard-veil.cyclic.app
 
 # AUTHOR
 
-Lydia Ojoawo : [@Lydia02](github.com/Lydia02)
+Lydia Ojoawo : [@Lydia02](https://github.com/Lydia02)
